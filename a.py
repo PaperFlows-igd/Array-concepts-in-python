@@ -77,15 +77,15 @@ class PersonalArray:
         return self.elements[position]
         
 
-#implementacao de uma fila em Python
+#implementacao de uma pilha em Python
 class PersonalStack:
     list = PersonalArray()
     
-    #Funcao que insere um elemento na posicao 0 da nossa fila
+    #Funcao que insere um elemento na posicao 0 da nossa pilha
     def push(self, newElement):
         self.list.insertAt(0, newElement)
     
-    #Funcao que remove um elemento da fila (no caso sempre a ultima posicao)   
+    #Funcao que remove um elemento da pilha (no caso sempre a ultima posicao)   
     def pop(self):
         return self.list.removePosition(0)
 
@@ -122,7 +122,7 @@ print( queue.dequeue() );
 #Cria ou instancia um objeto da fila que implementamos
 stack = PersonalStack()
 
-#Enpilhando elementos na estutura de dados
+#Empilhando elementos na estutura de dados
 stack.push("1")
 stack.push("2")
 stack.push("3")
