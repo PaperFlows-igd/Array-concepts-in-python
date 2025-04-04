@@ -54,7 +54,7 @@ class PersonalArray:
         self.insertPosition -= 1
         return removedElement
         
-    # Função para remover um elemento em uma posição específica
+    # Função para inserir+ um elemento em uma posição específica
     def insertAt(self, position, newElement):
         if position < 0 or position > self.insertPosition:
             print("Posição inválida!")
@@ -77,18 +77,6 @@ class PersonalArray:
         return self.elements[position]
         
 
-#implementacao de uma pilha em Python
-class PersonalStack:
-    list = PersonalArray()
-    
-    #Funcao que insere um elemento na posicao 0 da nossa pilha
-    def push(self, newElement):
-        self.list.insertAt(0, newElement)
-    
-    #Funcao que remove um elemento da pilha (no caso sempre a ultima posicao)   
-    def pop(self):
-        return self.list.removePosition(0)
-
 #implementacao de uma fila em Python
 class PersonalQueue:
     list = PersonalArray()
@@ -102,36 +90,36 @@ class PersonalQueue:
         return self.list.removePosition(self.list.size() - 1)
         
 
-#Cria uma instancia do objeto da fila que implementamos
-queue = PersonalQueue();
-		
-#Enfileirando elementos na estutura de dados
-queue.enqueue("1");
-queue.enqueue("2");
-queue.enqueue("3");
-queue.enqueue("4");
-queue.enqueue("5");
-		
-#Desenfileira os elementos inseridos na estrutura de dados e imprime
-print( queue.dequeue() );
-print( queue.dequeue() );
-print( queue.dequeue() );
-print( queue.dequeue() );
-print( queue.dequeue() );
-		
-#Cria ou instancia um objeto da fila que implementamos
-stack = PersonalStack()
+class MedicalOffice:
+    def __init__(self):
+        self.queue = PersonalQueue()
+    
+    def checkIn(self, patientName):
+        print(f"{patientName} chegou ao consultório e entrou na fila.")
+        self.queue.enqueue(patientName)
+    
+    def callNext(self):
+        if self.queue.list.isEmpty():
+            print("Nenhum paciente na fila!")
+        else:
+            nextPatient = self.queue.dequeue()
+            print(f"Chamando {nextPatient} para atendimento.")
+    
+    def showQueue(self):
+        if self.queue.list.isEmpty():
+            print("Fila vazia.")
+        else:
+            print("Pacientes na fila:", [self.queue.list.elementAt(i) for i in range(self.queue.list.size())])
 
-#Empilhando elementos na estutura de dados
-stack.push("1")
-stack.push("2")
-stack.push("3")
-stack.push("4")
-stack.push("5")
 
-#Desempilha os elementos inseridos na estrutura de dados e imprime
-print( stack.pop() )
-print( stack.pop() )
-print( stack.pop() )
-print( stack.pop() )
-print( stack.pop() )
+consultorio = MedicalOffice()
+consultorio.checkIn("Alice")
+consultorio.checkIn("Bob")
+consultorio.checkIn("Carlos")
+consultorio.showQueue()
+consultorio.callNext()
+consultorio.showQueue()
+consultorio.callNext()
+consultorio.showQueue()
+consultorio.callNext()
+consultorio.callNext()
